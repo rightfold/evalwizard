@@ -1,4 +1,4 @@
-let make url = object
+let make text = object
   method permission _ () = true
-  method execute _ () = [url]
+  method execute _ () = [text]
 end
