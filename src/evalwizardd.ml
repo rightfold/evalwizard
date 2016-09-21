@@ -15,6 +15,7 @@ let handle_message connection msg () =
       begin
         match Evalwizard_irc.parse text with
         | Some (opcode, argument) ->
+            (* TODO: ignore own messages *)
             let command = Command.find opcode commands in
             (* TODO: check permission *)
             let result = command#execute argument () in
