@@ -69,6 +69,6 @@ let make url = object
     let json = Yojson.Basic.from_string json_text in
     let results = List.take (List.map (Entry.parse_all json) Entry.format) 3 in
     match results with
-    | _ :: _ -> results @ [Uri.to_string url]
+    | _ :: _ -> results @ ["more: " ^ Uri.to_string url]
     | [] -> ["(no results for '" ^ query ^ "')"]
 end
