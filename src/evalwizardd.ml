@@ -4,8 +4,11 @@ module Irc = Irc_client_unix
 
 let commands =
   let help = Help.make "http://foldr.nl/Projects/Evalwizard" in
-  [ ("h",    help)
-  ; ("help", help)
+  let pursuit = Pursuit.make (Uri.of_string "https://pursuit.purescript.org/search") in
+  [ ("h",       help)
+  ; ("help",    help)
+  ; ("p",       pursuit)
+  ; ("pursuit", pursuit)
   ]
 
 let handle_message connection msg () =
