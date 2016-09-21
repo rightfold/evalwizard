@@ -67,5 +67,8 @@ let make url = object
     let (_, response_body) = Lwt_main.run (Http.get ~headers url) in
     let json_text = Lwt_main.run (Cohttp_lwt_body.to_string response_body) in
     let json = Yojson.Basic.from_string json_text in
-    List.take (List.map (Entry.parse_all json) Entry.format) 3 @ [Uri.to_string url];
+    let results = List.take (List.map (Entry.parse_all json) Entry.format) 3 in
+    match results with
+    | _ :: _ -> results @ [Uri.to_string url]
+    | [] -> ["(no results for '" ^ query ^ "')"]
 end
