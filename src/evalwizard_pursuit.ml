@@ -53,9 +53,9 @@ end = struct
     | _ -> []
 
   let format = function
-    | `Package name -> Printf.sprintf "%-30s (package)" name
-    | `Value (package, name) -> Printf.sprintf "%-30s (value, %s)" name package
-    | `Type (package, name) -> Printf.sprintf "%-30s (type, %s)" name package
+    | `Package name -> Printf.sprintf "\x02\x036%-30s\x03\x02 (package)" name
+    | `Value (package, name) -> Printf.sprintf "\x02\x033%-30s\x03\x02 (value, \x02\x036%s\x03\x02)" name package
+    | `Type (package, name) -> Printf.sprintf "\x02\x035%-30s\x03\x02 (type, \x02\x036%s\x03\x02)" name package
 end
 
 let headers = Cohttp.Header.init_with "Accept" "application/json"
